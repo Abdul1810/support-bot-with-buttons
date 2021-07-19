@@ -80,7 +80,7 @@ client.on('message', async (msg) => {
 		const supportembed = {
 			author: { name: config.title, icon_url: client.user.displayAvatarURL({ size: 2048, dynamic: false, format:"png"}) },
 			timestamp: new Date(),
-			color: 0x + config.embed_content.color,
+			color: `0x${config.embed_content.color}`,
 			thumbnail: { url: config.thumbnail ? config.thumbnail_url : client.user.displayAvatarURL({ size: 2048, format: "png", dynamic: false}) },
 			description: `\u200b\n1️⃣ ${config.embed_content.question_1}\n\u200b\n2️⃣ ${config.embed_content.question_2}\n\u200b\n3️⃣ ${config.embed_content.question_3}\n\u200b\n4️⃣ ${config.embed_content.question_4}\n\u200b\n5️⃣ ${config.embed_content.question_5}\n\u200b\n> **None Of The Above**\nIf Your Question is not in the Above List.(Further Assistance)\n\u200b\n`,
 			footer:{
@@ -99,7 +99,7 @@ client.on('message', async (msg) => {
 client.on('clickButton', async (button) => {
 	let responseembed = {
 		author:{ name: config.title, icon_url: config.thumbnail ? config.thumbnail_url : client.user.displayAvatarURL({ size: 2048, format: "png", dynamic: false}) },
-		color: 0x + config.embed_content.color,
+		color: `0x${config.embed_content.color}`,
 		description: null,
 		timestamp: new Date(),
 		footer:{
