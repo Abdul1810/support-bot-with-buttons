@@ -9,6 +9,10 @@ Support Server - [Click Here](https://discord.gg/sAMznQK2NG)
 
 My Discord - [Abdul#5464](https://discord.com/users/737553088218529813)
 
+# Feature Request
+
+Open a PR in this [Repo](https://github.com/Abdul1810/support-bot-with-buttons).
+
 # About
 
 Author - [Abdul1810](https://github.com/Abdul1810/)
