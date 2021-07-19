@@ -5,7 +5,8 @@ You Can Easily Fork This Code And Edit The Config and Host.
 
 # Support
 
-Support Server - [Click Here](https://discord.gg/sAMznQK2NG)\n
+Support Server - [Click Here](https://discord.gg/sAMznQK2NG)
+
 My Discord - [Abdul#5464](https://discord.com/users/737553088218529813)
 
 # About
