@@ -79,7 +79,7 @@ client.on('message', async (msg) => {
 			.addComponent(button6)
 		
 		const supportembed = {
-			author: { name: config.title, icon_url: client.user.displayAvatarURL({ size: 2048, dynamic: false, format:"png"}) },
+			author: { name: config.embed_content.title, icon_url: client.user.displayAvatarURL({ size: 2048, dynamic: false, format:"png"}) },
 			timestamp: new Date(),
 			color: `0x${config.embed_content.color}`,
 			thumbnail: { url: config.thumbnail ? config.thumbnail_url : client.user.displayAvatarURL({ size: 2048, format: "png", dynamic: false}) },
