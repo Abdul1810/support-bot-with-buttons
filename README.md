@@ -11,6 +11,6 @@ My Discord - [Abdul#5464](https://discord.com/users/737553088218529813)
 
 # About
 
-Author - [Abdul#5464](https://github.com/Abdul1810/)
+Author - [Abdul1810](https://github.com/Abdul1810/)
 
 Made With 💖 and JavaScript
