@@ -19,7 +19,7 @@
 		"response_2": "Required",
 		"response_3": "Required",
 		"response_4": "Required",
-		"response_5": "Required",
+		"response_5": "Required"
 	},
 	"log_channel_id": "Discord Channel ID(type-snowflake)",
 	"assistance_channel_id": "Discord Channel ID(type-snowflake)",
