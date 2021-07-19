@@ -11,7 +11,7 @@ My Discord - [Abdul#5464](https://discord.com/users/737553088218529813)
 
 # Feature Request
 
-Create a PR in this [Repo](https://github.com/Abdul1810/support-bot-with-buttons).
+Create a PR in this [Repo](https://github.com/Abdul1810/support-bot-with-buttons/pulls).
 
 # About
 
