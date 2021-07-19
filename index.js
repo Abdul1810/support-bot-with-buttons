@@ -8,7 +8,8 @@ const { MessageButton, MessageActionRow } = require('discord-buttons')
 disbut(client)
 
 //Loading Config
-const config = require('./config.json').then(console.log('Config Loaded'))
+const config = require('./config.json')
+console.log('Config Loaded')
 var owners = config.owners
 
 //Ready Event
