@@ -1,4 +1,4 @@
-# support-bot-with-buttons
+# Support-Bot-With-Buttons
 A Support Bot For Your Server.Easy To Host.Work with Buttons Interaction.
 
 You Can Easily Fork This Code And Edit The Config and Host.
