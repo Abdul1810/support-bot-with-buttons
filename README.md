@@ -15,7 +15,9 @@ Edit The Config File (config.json)
 
 Run The Bot with `npm start`
 
-(prefix you mentioned in the config)`create`.
+(prefix in the config)`create`.
+
+Note : This Only Works For UserID's in owners array in config.json
 
 # Support
 
@@ -30,5 +32,7 @@ Create a PR in this [Repo](https://github.com/Abdul1810/support-bot-with-buttons
 # About
 
 Author - [Abdul1810](https://github.com/Abdul1810/)
+
+Star This Repo If You Like
 
 Made With 💖 and JavaScript
