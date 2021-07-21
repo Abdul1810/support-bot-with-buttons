@@ -15,6 +15,8 @@ Edit The Config File (config.json)
 
 Run The Bot with `npm start`
 
+(prefix you mentioned in the config)`create`.
+
 # Support
 
 Support Server - [Click Here](https://discord.gg/sAMznQK2NG)
