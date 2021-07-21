@@ -17,7 +17,7 @@ Run The Bot with `npm start`
 
 (prefix in the config)`create`.
 
-Note : This Only Works For UserID's in owners array in config.json
+Note : create Command Only Works For UserID's in owners array in config.json
 
 # Support
 
