@@ -19,6 +19,11 @@ Run The Bot with `npm start`
 
 Note : create Command Only Works For UserID's in owners array in config.json
 
+# Example Bot
+
+[!cutie_support](https://media.discordapp.net/attachments/840655506723962930/866915564999671808/IMG_20210720_104614.jpg)
+
+
 # Support
 
 Support Server - [Click Here](https://discord.gg/sAMznQK2NG)
