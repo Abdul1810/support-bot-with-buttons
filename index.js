@@ -28,6 +28,8 @@ client.on('ready', () => {
  * @author Abdul$5464 <https://github.com/Abdul1810/>
  */
 
+
+
 //Message Event only Listen to owners so make sure to fill the owner array in config
 client.on('message', async (msg) => {
 	if (msg.author.bot) return
