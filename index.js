@@ -39,36 +39,36 @@ client.on('message', async (msg) => {
 	if (msg.content = `${config.prefix}create`) {
 		await msg.delete().catch(() => {})
 		let button1 = new MessageButton()
-    		.setStyle("grey")
-    		.setEmoji("1️⃣")
-    		.setID("button_one")
+    		        .setStyle("grey")
+    		        .setEmoji("1️⃣")
+    		        .setID("button_one")
 		
 		let button2 = new MessageButton()
 			.setEmoji("2️⃣")
-    		.setStyle("grey")
+    		        .setStyle("grey")
 			.setID("button_two")
 			
 		let button3 = new MessageButton()
 			.setEmoji("3️⃣")
-    		.setStyle("grey")
+    		        .setStyle("grey")
 			.setID("button_three")
 		
 		let button4 = new MessageButton()
 			.setEmoji("4️⃣")
-    		.setStyle("grey")
+    		        .setStyle("grey")
 			.setID("button_four")
 
 		//If You Don't Need 5th Button Remove The 4 Lines Below and Remove Line 67 
 		let button5 = new MessageButton()
 			.setEmoji("5️⃣")
-    		.setStyle("grey")
+    		        .setStyle("grey")
 			.setID("button_five")
 
 		let button6 = new MessageButton()
 			.setLabel("None Of The Above")
-    		.setStyle("green")
-    		//.setEmoji("🤷🏻‍♂️")
-    		.setID("none_of_the_above")
+    		        .setStyle("green")
+    		        //.setEmoji("🤷🏻‍♂️")
+    		        .setID("none_of_the_above")
 		
 		let buttonRow = new MessageActionRow()
 			.addComponent(button1)
