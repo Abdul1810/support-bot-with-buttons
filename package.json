@@ -4,8 +4,8 @@
   "description": "A Support Bot For Your Server with Simple Setup.Easy To Host.24/7 Online",
   "main": "index.js",
   "scripts": {
-    "test": "node index",
-    "start": "node index"
+    "test": "node index.js",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
