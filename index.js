@@ -153,6 +153,6 @@ client.on('clickButton', async (button) => {
 
 //Bot Coded By Abdul#5464
 //For Support Join Support Server https://discord.gg/sAMznQK2NG
-//For Feature Request Open a PR
+//For Feature Request Open a Pull Request
 
 client.login(config.token).catch(() => console.log('Invalid Token.Make Sure To Fill config.json'))
