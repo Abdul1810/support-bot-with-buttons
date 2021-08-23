@@ -17,7 +17,12 @@ Run The Bot with `npm start`
 
 (prefix in the config)`create`.
 
-Note : create Command Only Works For UserID's in owners array in config.json
+Important Notes :
+
+1. create Command Only Works For UserID's in owners array in config.json.
+2. Since it's Discord.js v13 it's only Works in Node JS Version ^16.0.0.
+3. To Check Node JS Version Type `node -v` in Command Prompt.
+4. If You want to Disable Slash-Commands Edit config.json "enable_slash": `false`
 
 # Example Bot
 
