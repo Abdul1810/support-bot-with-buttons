@@ -1,0 +1,33 @@
+{
+  "name": "support-bot-with-buttons",
+  "version": "1.2.3",
+  "description": "A Support Bot For Your Server with Simple Setup.Easy To Host.24/7 Online",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Abdul1810/support-bot-with-buttons.git"
+  },
+  "keywords": [
+    "Discord_Bot",
+    "Discord-js-v13",
+    "Discord_Buttons",
+    "Support_Bot",
+    "24/7_Online",
+    "Button_interactions"
+  ],
+  "author": "Abdul1810",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Abdul1810/support-bot-with-buttons/issues"
+  },
+  "homepage": "https://github.com/Abdul1810/support-bot-with-buttons#readme",
+  "dependencies": {
+    "@discordjs/rest": "^0.1.0-canary.0",
+    "discord-api-types": "^0.22.0",
+    "discord.js": "^13.1.0"
+  }
+}

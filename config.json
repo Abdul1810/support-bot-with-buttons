@@ -1,0 +1,30 @@
+{
+	"token": "NjM3OTU4ODM3NzM0ODY2OTU2.XbVvdw.aTqcMoyBh8h6kqATlZBgF6Mj2HA",
+	"status": "Bot Status to be Displayed",
+	"prefix": "your-prefix-here",
+	"enable_slash": true,
+	"owners": ["737553088218529813", "of", "discord_id", "type-snowflake"],
+	"embed_content": {
+		"title": "Support Embed Title",
+		"color": "00000",
+		"thumbnail": false,
+		"thumbnail_url": "Url of A PNG/GIF",
+		"question_1": "Required",
+		"question_2": "Required",
+		"question_3": "Required",
+		"question_4": "Required",
+		"question_5": "Required"
+	},
+	"responses": {
+		"response_1": "Required",
+		"response_2": "Required",
+		"response_3": "Required",
+		"response_4": "Required",
+		"response_5": "Required"
+	},
+	"log_channel_id": "809455332232921108",
+	"assistance_channel_id": "809455332232921108",
+	"assistance_role_id": "856799419402813440",
+	"Important": " Role to be Added in above field and The Further Assistance Channel will visible so create a role and set perms",
+	"Note": "Fill All The Above.For new Line use \n.For new TabSpace use \t.HyperLink use (text)[link] it will appear blue & clickable"
+}
