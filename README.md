@@ -13,7 +13,7 @@ Discord-Buttons
 
 # Instructions
 
-Download This Repo [Here](https://github.com/Abdul1810/support-bot-with-buttons/archive/refs/heads/main.zip)
+Download This Repo [Here](https://github.com/Abdul1810/support-bot-with-buttons/archive/refs/heads/djs-v12.zip)
 
 Unzip Files
 
@@ -37,7 +37,7 @@ Important Notes :
 
 # Support
 
-My Discord - [Abdul#5464](https://discord.com/users/737553088218529813)
+My Discord - [Abdul♥#5464](https://discord.com/users/737553088218529813)
 
 IF You Can't Contact Me in Dms. Join Any Of The Official Discord Servers.
 
