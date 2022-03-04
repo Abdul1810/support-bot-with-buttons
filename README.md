@@ -14,11 +14,11 @@ Node JS Version ^16.0.0
 
 If you Can't install Node v16.
 
-You can Try The Old Release [Here](https://github.com/Abdul1810/support-bot-with-buttons/tree/discordjs-v12)
+You can Try The Old Release [Here](https://github.com/Abdul1810/support-bot-with-buttons/tree/djs-v12)
 
 # Instructions
 
-Download This Repo [Here](https://github.com/Abdul1810/support-bot-with-buttons/archive/refs/heads/main.zip)
+Download This Repo [Here](https://github.com/Abdul1810/support-bot-with-buttons/archive/refs/heads/master.zip)
 
 Unzip Files
 
@@ -44,7 +44,7 @@ Important Notes :
 ![cutie_support](https://media.discordapp.net/attachments/840655506723962930/866915564999671808/IMG_20210720_104614.jpg)
 # Support
 
-My Discord - [Abdul#5464](https://discord.com/users/737553088218529813)
+My Discord - [Abdul♥#5464](https://discord.com/users/737553088218529813)
 
 IF You Can't Contact Me in Dms. Join Any Of The Official Discord Servers.
 
