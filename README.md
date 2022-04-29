@@ -41,7 +41,7 @@ Important Notes :
 
 # Example Bot
 
-![cutie_support](https://media.discordapp.net/attachments/840655506723962930/866915564999671808/IMG_20210720_104614.jpg)
+![cutie_support](https://media.discordapp.net/attachments/890982321572941837/969601468615250010/20220429_193955.png)
 # Support
 
 My Discord - [Abdul♥#5464](https://discord.com/users/737553088218529813)
