@@ -41,7 +41,7 @@ Important Notes :
 
 # Example Bot
 
-![sample]([https://media.discordapp.net/attachments/890982321572941837/969601468615250010/20220429_193955.png](https://raw.githubusercontent.com/Abdul1810/support-bot-with-buttons/refs/heads/master/imgs/sample.png))
+![sample](https://raw.githubusercontent.com/Abdul1810/support-bot-with-buttons/refs/heads/master/imgs/sample.png)
 # Support
 
 My Discord - [Abdul♥#5464](https://discord.com/users/737553088218529813)
