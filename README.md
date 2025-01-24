@@ -41,7 +41,7 @@ Important Notes :
 
 # Example Bot
 
-![cutie_support](https://media.discordapp.net/attachments/890982321572941837/969601468615250010/20220429_193955.png)
+![sample]([https://media.discordapp.net/attachments/890982321572941837/969601468615250010/20220429_193955.png](https://raw.githubusercontent.com/Abdul1810/support-bot-with-buttons/refs/heads/master/imgs/sample.png))
 # Support
 
 My Discord - [Abdul♥#5464](https://discord.com/users/737553088218529813)
@@ -54,7 +54,7 @@ Create a PR in this [Repo](https://github.com/Abdul1810/support-bot-with-buttons
 
 # About
 
-Author - [Abdul1810](https://github.com/Abdul1810/)
+Author - [i.am_rahman](https://github.com/Abdul1810/)
 
 Star This Repo If You Like
 
