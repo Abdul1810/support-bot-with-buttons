@@ -1,44 +1,49 @@
 //Discord Client
-const { Client, Intents, MessageActionRow, MessageButton } = require('discord.js')
-const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] })
-
-//Importing Rest & api-types
-const { REST } = require('@discordjs/rest')
-const { Routes } = require('discord-api-types/v9')
+const {
+	Client,
+	Events,
+	GatewayIntentBits,
+	ActivityType,
+	ActionRowBuilder,
+	ButtonBuilder,
+	ButtonStyle,
+	EmbedBuilder,
+	InteractionContextType,
+	MessageFlags,
+} = require('discord.js')
+//MessageContent is a Privileged Intent, enable it in the Developer Portal for the prefix command to work
+const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] })
 
 //Loading Config
 const config = require('./config.json')
 console.log('Config Loaded')
 var owners = config.owners
+const embedColor = parseInt(config.embed_content.color, 16) || 0
 
 //Ready Event
-client.on('ready', async () => {
+client.once(Events.ClientReady, async () => {
 	console.log(`${client.user.tag} is Ready!`)
 
 	client.user.setPresence({
 		status: "online",
 		activities: [{
 			name: config.status,
-			type: "LISTENING",
+			type: ActivityType.Listening,
 		}]
 	})
-	
+
 	//Registering Slash
 	if (config.enable_slash) {
-		const rest = new REST({ version: '9' }).setToken(config.token)
-
 		const commands = [{
 			name: 'create',
-			description: 'Replies with Help Embed!'
+			description: 'Replies with Help Embed!',
+			contexts: [InteractionContextType.Guild],
 		}]
-		
+
 		try {
 			console.log('Started refreshing application (/) commands.')
-			
-			await rest.put(
-				Routes.applicationCommands(client.user.id),
-				{ body: commands },
-			);
+
+			await client.application.commands.set(commands)
 
 			console.log('Successfully reloaded application (/) commands.')
 		}
@@ -52,175 +57,130 @@ client.on('ready', async () => {
  * @author Abdul$5464 <https://github.com/Abdul1810/>
  */
 
-client.on("interactionCreate", async (interaction) => {
-	var SupportEmbed = 
-	{
-		author: { name: config.embed_content.title, icon_url: client.user.displayAvatarURL({ size: 2048, dynamic: false, format:"png"}) },
-		timestamp: new Date(),
-		color: `0x${config.embed_content.color}`,
-		thumbnail: { url: config.thumbnail ? config.thumbnail_url : client.user.displayAvatarURL({ size: 2048, format: "png", dynamic: false}) },
-		description: `\u200b\n1️⃣ ${config.embed_content.question_1}\n\u200b\n2️⃣ ${config.embed_content.question_2}\n\u200b\n3️⃣ ${config.embed_content.question_3}\n\u200b\n4️⃣ ${config.embed_content.question_4}\n\u200b\n5️⃣ ${config.embed_content.question_5}\n\u200b\n> **None Of The Above**\nIf Your Question is not in the Above List.(Further Assistance)\n\u200b\n`,
-		footer:{
-			text: interaction.guild.name
-		}
-	}
-	let button1 = new MessageButton()
-		.setStyle("SECONDARY")
+const thumbnailUrl = () => config.embed_content.thumbnail ? config.embed_content.thumbnail_url : client.user.displayAvatarURL({ size: 2048, extension: "png", forceStatic: true })
+
+//Builds the Support Embed with its Buttons
+function createSupportMessage(guild) {
+	const supportEmbed = new EmbedBuilder()
+		.setAuthor({ name: config.embed_content.title, iconURL: client.user.displayAvatarURL({ size: 2048, extension: "png", forceStatic: true }) })
+		.setTimestamp()
+		.setColor(embedColor)
+		.setThumbnail(thumbnailUrl())
+		.setDescription(`​\n1️⃣ ${config.embed_content.question_1}\n​\n2️⃣ ${config.embed_content.question_2}\n​\n3️⃣ ${config.embed_content.question_3}\n​\n4️⃣ ${config.embed_content.question_4}\n​\n5️⃣ ${config.embed_content.question_5}\n​\n> **None Of The Above**\nIf Your Question is not in the Above List.(Further Assistance)\n​\n`)
+		.setFooter({ text: guild.name })
+
+	let button1 = new ButtonBuilder()
+		.setStyle(ButtonStyle.Secondary)
 		.setEmoji("1️⃣")
 		.setCustomId("button_one")
 
-	let button2 = new MessageButton()
+	let button2 = new ButtonBuilder()
 		.setEmoji("2️⃣")
-		.setStyle("SECONDARY")
+		.setStyle(ButtonStyle.Secondary)
 		.setCustomId("button_two")
-		
-	let button3 = new MessageButton()
+
+	let button3 = new ButtonBuilder()
 		.setEmoji("3️⃣")
-		.setStyle("SECONDARY")
+		.setStyle(ButtonStyle.Secondary)
 		.setCustomId("button_three")
-	
-	let button4 = new MessageButton()
+
+	let button4 = new ButtonBuilder()
 		.setEmoji("4️⃣")
-		.setStyle("SECONDARY")
+		.setStyle(ButtonStyle.Secondary)
 		.setCustomId("button_four")
 
-	//If You Don't Need 5th Button Remove The 4 Lines Below and Remove Line 67 
-	let button5 = new MessageButton()
+	//If You Don't Need 5th Button Remove The 4 Lines Below and Remove button5 from buttonRow1
+	let button5 = new ButtonBuilder()
 		.setEmoji("5️⃣")
-		.setStyle("SECONDARY")
+		.setStyle(ButtonStyle.Secondary)
 		.setCustomId("button_five")
 
-	let button6 = new MessageButton()
+	let button6 = new ButtonBuilder()
 		.setLabel("None Of The Above")
-		.setStyle("SUCCESS")
+		.setStyle(ButtonStyle.Success)
 		//.setEmoji("🤷🏻‍♂️")
 		.setCustomId("none_of_the_above")
-	
-	let buttonRow1 = new MessageActionRow()
-		.addComponents([button1, button2, button3, button4, button5])
-	
-	let buttonRow2 = new MessageActionRow()
-		.addComponents([button6])
-	
-	if (interaction.isCommand()) {
+
+	let buttonRow1 = new ActionRowBuilder()
+		.addComponents(button1, button2, button3, button4, button5)
+
+	let buttonRow2 = new ActionRowBuilder()
+		.addComponents(button6)
+
+	return { embeds: [supportEmbed], components: [buttonRow1, buttonRow2] }
+}
+
+client.on(Events.InteractionCreate, async (interaction) => {
+	if (!interaction.inGuild()) return
+
+	if (interaction.isChatInputCommand()) {
 		if (!owners.includes(interaction.user.id)) {
-			await interaction.reply({ content: "You aren\'t Authorized To use This Command!", ephemeral: true })
+			return interaction.reply({ content: "You aren\'t Authorized To use This Command!", flags: MessageFlags.Ephemeral })
 		}
 
-		await interaction.reply({ embeds: [SupportEmbed], components: [buttonRow1, buttonRow2] })
+		await interaction.reply(createSupportMessage(interaction.guild))
 	}
 	else if (interaction.isButton()) {
-		let responseembed = 
-		{
-			author:{ name: config.title, icon_url: config.thumbnail ? config.thumbnail_url : client.user.displayAvatarURL({ size: 2048, format: "png", dynamic: false}) },
-			color: `0x${config.embed_content.color}`,
-			description: null,
-			timestamp: new Date(),
-			footer:{
-				text: interaction.guild.name
-			}
-		}
+		let responseembed = new EmbedBuilder()
+			.setAuthor({ name: config.embed_content.title, iconURL: thumbnailUrl() })
+			.setColor(embedColor)
+			.setTimestamp()
+			.setFooter({ text: interaction.guild.name })
+
 		const logchannel = interaction.guild.channels.cache.get(config.log_channel_id)
+		const log = () => logchannel?.send(`> **${interaction.user.tag}**(${interaction.user.id}) Used ${interaction.customId}\nTimeStamp: ${new Date()}`).catch(console.error)
+
 		if (interaction.customId === "button_one") {
-			responseembed.description = `\u200b\n**${config.responses.response_1}**\n\u200b\n`
-			logchannel.send(`> **${interaction.user.username + "#" + interaction.user.discriminator}**(${interaction.user.id}) Used ${interaction.customId}\nTimeStamp: ${new Date()}`)
-			// let invitecutie = new MessageButton()
+			responseembed.setDescription(`​\n**${config.responses.response_1}**\n​\n`)
+			log()
+			// let invitecutie = new ButtonBuilder()
 			//     .setLabel("Invite Link")
-			//     .setStyle("url")
+			//     .setStyle(ButtonStyle.Link)
 			//     .setURL("Link")
-			// let buttonRow = new MessageActionRow()
-			// 	.addComponent(invitecutie)
+			// let buttonRow = new ActionRowBuilder()
+			// 	.addComponents(invitecutie)
 			//!If You Want Button in the Response remove // from the the Above 6 lines
-			return interaction.reply({ embeds: [responseembed], ephemeral: true })//If you want to send link button add ,component: buttonRow after the ephermeral: true declaration
+			return interaction.reply({ embeds: [responseembed], flags: MessageFlags.Ephemeral })//If you want to send link button add ,components: [buttonRow] after the flags declaration
 		}
 		if (interaction.customId === "button_two") {
-			responseembed.description = `**${config.responses.response_2}**\n\u200b\n`
-			logchannel.send(`> **${interaction.user.username + "#" + interaction.user.discriminator}**(${interaction.user.id}) Used ${interaction.customId}\nTimeStamp: ${new Date()}`)
-			return interaction.reply({ embeds: [responseembed], ephemeral: true })
+			responseembed.setDescription(`**${config.responses.response_2}**\n​\n`)
+			log()
+			return interaction.reply({ embeds: [responseembed], flags: MessageFlags.Ephemeral })
 		}
 		if (interaction.customId === "button_three") {
-			responseembed.description = `**${config.responses.response_3}**`
-			logchannel.send(`> **${interaction.user.username + "#" + interaction.user.discriminator}**(${interaction.user.id}) Used ${interaction.customId}\nTimeStamp: ${new Date()}`)
-			return interaction.reply({ embeds: [responseembed], ephemeral: true })
+			responseembed.setDescription(`**${config.responses.response_3}**`)
+			log()
+			return interaction.reply({ embeds: [responseembed], flags: MessageFlags.Ephemeral })
 		}
 		if (interaction.customId === "button_four") {
-			responseembed.description = `**${config.responses.response_4}**`
-			logchannel.send(`> **${interaction.user.username + "#" + interaction.user.discriminator}**(${interaction.user.id}) Used ${interaction.customId}\nTimeStamp: ${new Date()}`)
-			return interaction.reply({ embeds: [responseembed], ephemeral: true })
+			responseembed.setDescription(`**${config.responses.response_4}**`)
+			log()
+			return interaction.reply({ embeds: [responseembed], flags: MessageFlags.Ephemeral })
 		}
 		if (interaction.customId === "button_five") {
-			responseembed.description = `**${config.responses.response_5}**`
-			logchannel.send(`> **${interaction.user.username + "#" + interaction.user.discriminator}**(${interaction.user.id}) Used ${interaction.customId}\nTimeStamp: ${new Date()}`)
-			return interaction.reply({ embeds: [responseembed], ephemeral: true })
+			responseembed.setDescription(`**${config.responses.response_5}**`)
+			log()
+			return interaction.reply({ embeds: [responseembed], flags: MessageFlags.Ephemeral })
 		}
 		if (interaction.customId === "none_of_the_above") {
-			responseembed.description = `**Go to <#${config.assistance_channel_id}> Channel and ask Your Questions.**`
-			interaction.guild.members.cache.get(interaction.user.id).roles.add(config.assistance_role_id)
-			interaction.guild.channels.cache.get(config.assistance_channel_id).send(`<@${interaction.user.id}> Here you can Ask your Further Questions.`)
-			logchannel.send(`> **${interaction.user.username + "#" + interaction.user.discriminator}**(${interaction.user.id}) Used ${interaction.customId}\nTimeStamp: ${new Date()}`)
-			return interaction.reply({ embeds: [responseembed], ephemeral: true })
+			responseembed.setDescription(`**Go to <#${config.assistance_channel_id}> Channel and ask Your Questions.**`)
+			interaction.member.roles.add(config.assistance_role_id).catch(console.error)
+			interaction.guild.channels.cache.get(config.assistance_channel_id)?.send(`<@${interaction.user.id}> Here you can Ask your Further Questions.`).catch(console.error)
+			log()
+			return interaction.reply({ embeds: [responseembed], flags: MessageFlags.Ephemeral })
 		}
 	}
 })
 
 //Message Event only Listen to owners so make sure to fill the owner array in config
-client.on("messageCreate", async (msg) => {
+client.on(Events.MessageCreate, async (msg) => {
 	if (msg.author.bot) return
-	if (msg.channel.type === "dm") return
+	if (!msg.inGuild()) return
 	if (!owners.includes(msg.author.id)) return
 	if (msg.content !== `${config.prefix}create`) return
-	if (msg.content = `${config.prefix}create`) {
-		await msg.delete().catch(() => {})
-		let button1 = new MessageButton()
-			.setStyle("SECONDARY")
-			.setEmoji("1️⃣")
-			.setCustomId("button_one")
 
-		let button2 = new MessageButton()
-			.setEmoji("2️⃣")
-			.setStyle("SECONDARY")
-			.setCustomId("button_two")
-			
-		let button3 = new MessageButton()
-			.setEmoji("3️⃣")
-			.setStyle("SECONDARY")
-			.setCustomId("button_three")
-		
-		let button4 = new MessageButton()
-			.setEmoji("4️⃣")
-			.setStyle("SECONDARY")
-			.setCustomId("button_four")
-
-		//If You Don't Need 5th Button Remove The 4 Lines Below and Remove Line 67 
-		let button5 = new MessageButton()
-			.setEmoji("5️⃣")
-			.setStyle("SECONDARY")
-			.setCustomId("button_five")
-
-		let button6 = new MessageButton()
-			.setLabel("None Of The Above")
-			.setStyle("SUCCESS")
-			//.setEmoji("🤷🏻‍♂️")
-			.setCustomId("none_of_the_above")
-		
-		let buttonRow1 = new MessageActionRow()
-			.addComponents([button1, button2, button3, button4, button5])
-		
-		let buttonRow2 = new MessageActionRow()
-			.addComponents([button6])
-		
-		const supportembed = {
-			author: { name: config.embed_content.title, icon_url: client.user.displayAvatarURL({ size: 2048, dynamic: false, format:"png"}) },
-			timestamp: new Date(),
-			color: `0x${config.embed_content.color}`,
-			thumbnail: { url: config.thumbnail ? config.thumbnail_url : client.user.displayAvatarURL({ size: 2048, format: "png", dynamic: false}) },
-			description: `\u200b\n1️⃣ ${config.embed_content.question_1}\n\u200b\n2️⃣ ${config.embed_content.question_2}\n\u200b\n3️⃣ ${config.embed_content.question_3}\n\u200b\n4️⃣ ${config.embed_content.question_4}\n\u200b\n5️⃣ ${config.embed_content.question_5}\n\u200b\n> **None Of The Above**\nIf Your Question is not in the Above List.(Further Assistance)\n\u200b\n`,
-			footer:{
-				text: msg.guild.name
-			}
-		}
-		return msg.channel.send({ embeds: [supportembed], components: [buttonRow1, buttonRow2] })
-	} else return
+	await msg.delete().catch(() => {})
+	return msg.channel.send(createSupportMessage(msg.guild))
 })
 
 //Bot Coded By Abdul#5464

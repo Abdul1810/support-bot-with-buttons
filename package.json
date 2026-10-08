@@ -13,7 +13,7 @@
   },
   "keywords": [
     "Discord_Bot",
-    "Discord-js-v13",
+    "Discord-js-v14",
     "Discord_Buttons",
     "Support_Bot",
     "24/7_Online",
@@ -24,10 +24,11 @@
   "bugs": {
     "url": "https://github.com/Abdul1810/support-bot-with-buttons/issues"
   },
+  "engines": {
+    "node": ">=18"
+  },
   "homepage": "https://github.com/Abdul1810/support-bot-with-buttons#readme",
   "dependencies": {
-    "@discordjs/rest": "^0.1.0-canary.0",
-    "discord-api-types": "^0.22.0",
-    "discord.js": "^13.1.0"
+    "discord.js": "^14.27.0"
   }
 }
