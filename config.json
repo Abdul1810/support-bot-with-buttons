@@ -2,6 +2,7 @@
 	"token": "Bot Token",
 	"status": "Bot Status to be Displayed",
 	"prefix": "your-prefix-here",
+	"enable_slash": true,
 	"owners": ["array", "of", "discord_id", "type-snowflake"],
 	"embed_content": {
 		"title": "Support Embed Title",
